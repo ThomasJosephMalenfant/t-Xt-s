@@ -1,2 +1,2 @@
 # t-Xt-s
-Liturgical text processing application
+Traitement de textes liturgiques pour faciliter la préparation et la célébration de liturgies catholiques.
