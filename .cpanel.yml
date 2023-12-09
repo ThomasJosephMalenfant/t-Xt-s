@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/thomasm/public_html/t-Xt-s/
+    - /bin/cp -R * $DEPLOYPATH
+    
