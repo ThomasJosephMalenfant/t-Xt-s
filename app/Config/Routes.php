@@ -8,8 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 service('auth')->routes($routes);
 
-use App\Controllers\Pages;
+use App\Controllers\Hermew;
 
-$routes->get('pages', [Pages::class, 'index']);
-$routes->get('(:segment)', [Pages::class, 'view']);
-
+$routes->get('hermew', [Hermew::class, 'index']);
