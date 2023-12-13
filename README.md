@@ -1,3 +1,8 @@
+# t-Xt-s Application
+t-Xt-s est une application d'exploration et d'annotation des textes de la Bible.
+t-Xt-s est basé le framework CodeIgniter 4.
+t-Xt-s est Open Source.
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?

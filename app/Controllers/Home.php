@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Controllers;
-
+/**
+ * Class Home
+ * 
+ * Générique 
+ */
 class Home extends BaseController
 {
     public function index(): string
@@ -13,4 +17,8 @@ class Home extends BaseController
             . view('templates/footer');
 
     }
+
+    // TODO : ajouter settings()
+    
+    // TODO : ajouter about()
 }
