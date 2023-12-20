@@ -23,8 +23,6 @@ class Hermew extends BaseController
     public function index() :string
     {
         //NEXT function bidon pour cascade $param URI, $GET , $user('settings')
-
-        //TODO Structurer + Populer DB ?
         
         //TODO Rqst Model
 
