@@ -12,12 +12,8 @@ class CheckRole implements FilterInterface
     {
         $auth = service('auth');
 
-        if (! $auth->user()) {
-            return redirect()->to('login');
-        }
-
         if (! $auth->user()->inGroup('superadmin')) {
-            return redirect()->to('logout');
+            return redirect()->to('');;
         }
     }
 
