@@ -8,6 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\CheckRole ;
 
 class Filters extends BaseConfig
 {
@@ -25,6 +26,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'checkrole'     => CheckRole::class,
     ];
 
     /**
@@ -39,7 +41,8 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
-            'session' => ['except' => ['login*', 'register', 'auth/a/*', 'logout']],
+            // 'session' => ['except' => ['login*', 'register', 'auth/a/*', 'logout']],
+            'checkrole' => ['except' => ['login*', 'register', 'auth/a/*', 'logout']],
         ],
         'after' => [
             'toolbar',
