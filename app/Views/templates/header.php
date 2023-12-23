@@ -10,5 +10,4 @@
   <body>
 	<script src="/scripts/common.js"></script>
     <h1>t-Xt-s</h1>
-    <a href="/logout">logout</a>
     <h2><?= esc($title) ?></h2>

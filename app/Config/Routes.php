@@ -7,8 +7,6 @@ use App\Controllers\Grafw;
 use App\Controllers\Eklegw;
 use App\Controllers\Dhlw;
  */
-// Controller bidon... à effacer quand superflus...
-use App\Controllers\Livres;
 
 /**
  * @var RouteCollection $routes
@@ -16,8 +14,9 @@ use App\Controllers\Livres;
 service('auth')->routes($routes);
 
 $routes->get('/', 'Home::index');
-$routes->get('hermew', [Hermew::class, 'index']);
-$routes->get('hermew/(:any)', [Hermew::class, 'search']);
+$routes->get('hermew', [Hermew::class, 'search']);
+$routes->get('hermew/(:any)', [Hermew::class, 'find']);
+$routes->post('hermew', [Hermew::class, 'find']);
 
 
 /* $routes->get('api', [Api::class, 'index']);
@@ -25,8 +24,4 @@ $routes->get('grafw', [Grafw::class, 'index']);
 $routes->get('eklegw', [Eklegw::class, 'index']);
 $routes->get('dhlw', [Dhlw::class, 'index']);
  */
-//Routes bidon, à effacer quand superflus
-$routes->get('livres', [Livres::class, 'index']);
-$routes->get('livres/(:segment)', [Livres::class, 'show']);
-
 

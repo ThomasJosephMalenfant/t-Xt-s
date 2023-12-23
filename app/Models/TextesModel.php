@@ -26,10 +26,10 @@ class TextesModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    public function getVerset (int $livre, int $chapitre, int $verset)
+    public function getVerset (int $livre_id, int $chapitre, int $verset)
     {
         return $this->where([
-                            'livres_id' => $livre,
+                            'livres_id' => $livre_id,
                             'chapitre' => $chapitre,
                             'verset' => $verset,
                             ])->first() ;
@@ -40,14 +40,14 @@ class TextesModel extends Model
         return $this->where(['id' => $id])->first() ;
     }
 
-    public function getMaxVersetByChapitre (int $livre, int $chapitre)
+    public function getMaxVersetByChapitre (int $livre_id, int $chapitre)
     {
         return $this->selectMax('verset')
-                    ->where(['livre' => $livre, 'chapitre' => $chapitre])
+                    ->where(['livres_id' => $livre_id, 'chapitre' => $chapitre])
                     ->first()['verset'];
     }
 
-    public function getVersetsByRange (int $livre, string $range)
+    public function getVersetsByRange (int $livre_id, string $range)
     {
         $versets = array();
         $array_sans_livre = explode(".", $range);
@@ -105,7 +105,7 @@ class TextesModel extends Model
                     $fin_verset = "MAX" ;
                 }
                 if ($fin_verset == "MAX") {
-                    $fin_verset = $this->getMaxVersetByChapitre($livre, $fin_chapitre) ;
+                    $fin_verset = $this->getMaxVersetByChapitre($livre_id, $fin_chapitre) ;
                 }
             }
 
@@ -114,7 +114,7 @@ class TextesModel extends Model
 
             // Tester l'existence des 2 extremités
             for ($i=0; $i < 2 ; $i++) {
-                $un_boutte = $this->getVerset($livre, $extremites[$i]['chapitre'], $extremites[$i]['verset']) ; 
+                $un_boutte = $this->getVerset($livre_id, $extremites[$i]['chapitre'], $extremites[$i]['verset']) ; 
                 if ( $un_boutte === null ) {
                     return null ;
                 }

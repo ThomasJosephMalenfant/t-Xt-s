@@ -6,6 +6,9 @@ use App\Models\VersionsModel;
 use App\Models\LivresModel;
 use App\Models\TextesModel;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
+
+
 /**
  * Class Hermew "interpréter"
  *
@@ -23,27 +26,43 @@ use App\Models\TextesModel;
  */
 class Hermew extends BaseController
 {
-    public function index() :string
+    protected $helpers = ['form'];
+    public function search() :string
     {
-        $data['title'] = "Formulaire" ;
+        $data['title'] = "Votre référence" ;
 
         return view('templates/header', $data)
-        . view('templates/footer') ;
+            . view('hermew/search')
+            . view('templates/footer') ;
     }
-    public function search($seg1 = null, $seg2 = null) :string
+    public function find($seg1 = null, $seg2 = null) :string
     {
-
-        //NEXT function bidon pour cascade $param URI, $GET , $user('settings')
-        //TODO Paramètrer langue
-        $langue = 'fr' ;
-        //TODO Paramètrer corpus
-        $corpus = 'Xt' ;
-        //TODO Paramètrer version
+        $default_version = "aelf" ;
         $model = model(VersionsModel::class);
-        $version = $model->getVersions($seg1);
-        if ($version === null) {
-            $seg2 = $seg1 ;
-            $version = $model->getVersions("aelf");
+
+        if ($this->request->is('post')) {
+            $rules = [
+                'ref' => 'required'
+            ];
+
+            if (! $this->validate($rules)) return $this->search();
+            
+            $segments = $this->validator->getValidated()['ref'];
+            $post_version = trim(explode(" ",$segments)[0]) ;
+            $version = $model->getVersions($post_version);
+            if ($version === null) {
+                $version = $model->getVersions($default_version);
+                $seg2 = $segments ;
+            } else {
+                $seg1 = $post_version;
+                $seg2 = substr($segments, strpos($segments, " ") + 1) ;
+            }
+        } else {
+            $version = $model->getVersions($seg1);            
+            if ($version === null) {
+                $seg2 = $seg1 ;
+                $version = $model->getVersions($default_version);
+            }
         }
 
         $ref_livre = trim(explode(" ",$seg2)[0]);
@@ -51,27 +70,26 @@ class Hermew extends BaseController
         $livre = $model->getLivres($version["id"], $ref_livre);
 
         if ($livre === null) {
-            dd("Aucun livre abbrévié : ".$ref_livre . " dans cette version");
+            throw new PageNotFoundException('Pas trouvé livre : ' . $ref_livre);
         }
+
 
         $ref_sans_livre = substr(strstr($seg2," "),1);
 
         $model = model(TextesModel::class);
-        $textes = $model->getVersetsByRange($livre["id"], $ref_sans_livre);
+        $textes = $model->getVersetsByRange($livre['id'], $ref_sans_livre);
+
+        if ($textes === null) {
+            throw new PageNotFoundException('Référence erronée.' );
+        }
 
         $data = [
-            'title' => "Test hermew",
-            'langue' => $langue,
-            'corpus' => $corpus,
-            'version' => $version['nom'],
-            'reference' => $ref_sans_livre,
+            'title' => $livre['titre'],
+            'reference' => $seg2,
+            'textes' => $textes,
         ] ;
-
-        $table = new \CodeIgniter\View\Table();
-        
         return view('templates/header', $data)
-            . view('hermew')
-            . $table->generate($textes)
+            . view('hermew/find')
             . view('templates/footer') ;
     }
 
