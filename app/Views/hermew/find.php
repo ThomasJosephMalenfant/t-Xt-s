@@ -3,7 +3,7 @@
 <?php if (! empty($textes) && is_array($textes)): ?>
 
 <?php foreach ($textes as $verset): ?>
-    <p><?= esc($verset['texte']) ?></p>
+    <p><sup><?= esc($verset['verset']) ?> </sup><?= esc($verset['texte']) ?></p>
 <?php endforeach ?>
 
 <?php else: ?>
