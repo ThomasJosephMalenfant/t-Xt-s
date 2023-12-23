@@ -54,7 +54,7 @@ class Hermew extends BaseController
             dd("Aucun livre abbrévié : ".$ref_livre . " dans cette version");
         }
 
-        $ref_sans_livre = substr(strstr($seg2,"_"),1);
+        $ref_sans_livre = substr(strstr($seg2," "),1);
 
         $model = model(TextesModel::class);
         $textes = $model->getVersetsByRange($livre["id"], $ref_sans_livre);
