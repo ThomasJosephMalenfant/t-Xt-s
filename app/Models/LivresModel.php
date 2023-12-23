@@ -26,13 +26,13 @@ class LivresModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    public function getLivres($abbr = false)
+    public function getLivres($version, $abbr = false)
     {
         if ($abbr === false) {
             return $this->findAll();
         }
 
-        return $this->where(['abbr' => $abbr])->first();
+        return $this->where(['versions_id' => $version, 'abbr' => $abbr])->first();
     }
 
 }

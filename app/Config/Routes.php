@@ -1,6 +1,14 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
+use App\Controllers\Hermew;
+/* use App\Controllers\Api;
+use App\Controllers\Grafw;
+use App\Controllers\Eklegw;
+use App\Controllers\Dhlw;
+ */
+// Controller bidon... à effacer quand superflus...
+use App\Controllers\Livres;
 
 /**
  * @var RouteCollection $routes
@@ -8,22 +16,17 @@ use CodeIgniter\Router\RouteCollection;
 service('auth')->routes($routes);
 
 $routes->get('/', 'Home::index');
-
-use App\Controllers\Api;
-$routes->get('api', [Api::class, 'index']);
-
-use App\Controllers\Hermew;
 $routes->get('hermew', [Hermew::class, 'index']);
+$routes->get('hermew/(:any)', [Hermew::class, 'search']);
 
-use App\Controllers\Grafw;
+
+/* $routes->get('api', [Api::class, 'index']);
 $routes->get('grafw', [Grafw::class, 'index']);
-
-use App\Controllers\Eklegw;
 $routes->get('eklegw', [Eklegw::class, 'index']);
-
-use App\Controllers\Dhlw;
 $routes->get('dhlw', [Dhlw::class, 'index']);
-
-use App\Controllers\Livres;
+ */
+//Routes bidon, à effacer quand superflus
 $routes->get('livres', [Livres::class, 'index']);
 $routes->get('livres/(:segment)', [Livres::class, 'show']);
+
+
