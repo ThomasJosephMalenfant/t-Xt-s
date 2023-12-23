@@ -6,5 +6,5 @@
 
     <input type="input" name="ref" value="<?= set_value('ref') ?>">
 
-    <input type="submit" name="submit" value="">
+    <input type="submit" name="submit" value="GO!">
 </form>
