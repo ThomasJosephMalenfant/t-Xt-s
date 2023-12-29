@@ -31,7 +31,7 @@ class LivresModel extends Model
         if ($abbr === false) {
             return $this->findAll();
         }
-
+        
         return $this->where(['versions_id' => $version, 'abbr' => $abbr])->first();
     }
 

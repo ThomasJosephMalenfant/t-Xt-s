@@ -2,6 +2,7 @@
 
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Hermew;
+
 /* use App\Controllers\Api;
 use App\Controllers\Grafw;
 use App\Controllers\Eklegw;
@@ -18,6 +19,10 @@ $routes->get('hermew', [Hermew::class, 'search']);
 $routes->get('hermew/(:any)', [Hermew::class, 'find']);
 $routes->post('hermew', [Hermew::class, 'find']);
 
+$routes->resource('api/langues', ['controller' => 'Langues']) ;
+$routes->resource('api/corpus', ['controller' => 'Corpus']) ;
+$routes->resource('api/livres', ['controller' => 'Livres']) ;
+$routes->resource('api/textes', ['controller' => 'Textes']) ;
 
 /* $routes->get('api', [Api::class, 'index']);
 $routes->get('grafw', [Grafw::class, 'index']);
