@@ -1,7 +1,7 @@
 // TODO Transformer en un seul objet avec différentes méthodes ?
 
 const getTextes = async (rqt) => {
-    let url = "http://localhost/api/textes/" + encodeURI(rqt) ;
+    let url = "/api/textes/" + encodeURI(rqt) ;
     const reponse = await fetch(url, {
         credentials: 'same-origin',
         headers: {
@@ -20,7 +20,7 @@ const getTextes = async (rqt) => {
 function remplacer(element,rqt,json){
     let versets = "";
     json.forEach(element => { versets += "<br>" + element["texte"] });
-    versets = versets.trim();
+    versets = versets.trim().slice(4) ;
     document.getElementById(element).innerHTML = 
     document.getElementById(element).innerHTML.replace("|+" + rqt + "+|", versets);
 }
