@@ -9,13 +9,14 @@ namespace App\Controllers ;
  */
 class Dhlw extends BaseController
 {
+    protected $helpers = ['form'];
 
     public function index() :string
     {
         $data['title'] = "Test dhlw" ;
         return view('templates/header', $data)
-            . view('dhlw', $data)
-            . view('templates/footer', $data) ;
+            . view('dhlw/index')
+            . view('templates/footer') ;
     }
 
 }
