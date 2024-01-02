@@ -1,7 +1,83 @@
-h1 {
+html {
+    font-size: calc(15px + 0.390625vw);
+}
+
+.grille {
+    display:grid;
+    grid-template-rows:auto 1fr auto auto auto;
+    grid-template-areas:
+        'header'
+        'main-content'
+        'left-sidebar'
+        'right-sidebar'
+        'footer';
+
+        /* fallback height */
+    min-height:100vh;
+
+    /* new small viewport height for modern browsers */
+    min-height:100svh;
+}
+
+/* general column padding */
+.grille > * {
+    padding:1rem;
+}
+
+/* assign columns to grid areas */
+.grille > .header {
+    grid-area:header;
+/*     background-image: url('./images/t-Xt-s_head.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat; */
+}
+.grille > .main-content {
+    grid-area:main-content;
+/*     background:#fff; */
+}
+.grille > .left-sidebar {
+    grid-area:left-sidebar;
+/*     background:#f5d55f; */
+}
+.grille > .right-sidebar {
+    grid-area:right-sidebar;
+/*     background:#c5ed77; */
+}
+.grille > .footer {
+    grid-area:footer;
+    background:#72c2f1;
+}
+
+header h1 {
     text-align: center;
 }
-h1 a {
+header h1 a {
     color:black;
     text-decoration: none;
+}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+    .grille {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:auto 1fr auto auto;
+        grid-template-areas:
+            'header header'
+            'main-content main-content'
+            'left-sidebar right-sidebar'
+            'footer footer';
+    }
+}
+
+/* desktop breakpoint */
+@media (min-width:1024px) {
+    .grille {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows:auto 1fr auto;
+        grid-template-areas:
+            'header header header header'
+            'left-sidebar main-content main-content right-sidebar'
+            'footer footer footer footer';
+    }
 }

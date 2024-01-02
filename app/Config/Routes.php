@@ -1,7 +1,6 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
-use App\Controllers\Hermew;
 use App\Controllers\Dhlw;
 
 /*
