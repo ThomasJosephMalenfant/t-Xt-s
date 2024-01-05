@@ -18,11 +18,20 @@ const reponse = await fetch(url, {
 // FIXME : curseur retourne au début du textarea cf. https://stackoverflow.com/questions/6249095/how-to-set-the-caret-cursor-position-in-a-contenteditable-element-div
 
 function remplacer(element,rqt,json){
-    let versets = "<h3>" + rqt + "</h3>";
-    json.forEach(element => { versets += element["texte"] + "<br>"});
-/*     versets = versets.trim().slice(4) ; */
-    document.getElementById(element).innerHTML = 
-    document.getElementById(element).innerHTML.replace("|+" + rqt + "+|", versets);
+    const pericope = document.createElement("txts-pericope");
+    const titre = document.createElement("h3");
+    titre.textContent = rqt ;
+    pericope.appendChild(titre);
+    json.forEach(jsonElement => {
+        let tVerset = document.createElement("txts-verset");
+        tVerset.dataset.id =  jsonElement["id"] ;
+        tVerset.dataset.chapitre =  jsonElement["chapitre"] ;
+        tVerset.dataset.verset = jsonElement["verset"] ;
+        tVerset.dataset.livre =  jsonElement["livres_id"] ;
+        tVerset.textContent = jsonElement["texte"] ;
+        pericope.appendChild(tVerset);
+    });
+    document.getElementById(element).appendChild(pericope);
 }
 
 function checkContent() {

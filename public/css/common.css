@@ -8,6 +8,18 @@ h2 {
     font-size: 1.5rem;
 }
 
+txts-pericope:hover {
+    background:palegoldenrod;
+}
+
+txts-verset:hover {
+    background:yellow;
+}
+
+txts-verset::before {
+    content: " ";
+}
+
 .grille {
     display:grid;
     grid-template-rows:auto 1fr auto auto auto;
