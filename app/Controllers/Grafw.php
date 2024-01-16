@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers ;
+use App\Models\CorpusModel;
 
 /**
  * Classe Grafw "écrire"
@@ -17,10 +18,14 @@ class Grafw extends BaseController
 
     public function index() :string
     {
-        $data['title'] = "Test grafw" ;
+        $model = model(CorpusModel::class);
+        $data['title'] = "Grafw" ;
+
+        $data['corpus'] = $model->getCorpus() ;
+        
         return view('templates/header', $data)
-            . view('grafw', $data)
-            . view('templates/footer', $data) ;
+            . view('grafw/center')
+            . view('templates/footer') ;
     }
 
 }

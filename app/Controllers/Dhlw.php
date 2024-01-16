@@ -15,7 +15,7 @@ class Dhlw extends BaseController
     {
         $data['title'] = "Test dhlw" ;
         return view('templates/header', $data)
-            . view('dhlw/index')
+            . view('dhlw/center')
             . view('templates/footer') ;
     }
 
