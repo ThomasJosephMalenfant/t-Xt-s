@@ -5,25 +5,25 @@
 <section class="left-sidebar">
 <form id="form_ctxt">
     <label for="corpus">Corpus</label>
-    <select name="corpus" id="corpus">
+    <select name="corpus" id="corpus" >
     <?php foreach ($corpus as $item): ?>
         <option value="<?= esc($item["id"]) ?>"><?= esc($item["nom"]) ?></option>
     <?php endforeach ?>
     </select>
     <br>
 
-    <label for="version">Version</label>
-    <select name="version" id="version" disabled>
+    <label for="versions">Version</label>
+    <select name="versions" id="versions" disabled>
     </select>
     <br>
 
-    <label for="livre">Livre</label>
-    <select name="livre" id="livre" disabled>
+    <label for="livres">Livre</label>
+    <select name="livres" id="livres" disabled>
     </select>
     <br>
 
-    <label for="chap">Chapitre</label>
-    <select name="chap" id="chap" disabled>
+    <label for="chapitres">Chapitre</label>
+    <select name="chapitres" id="chapitres" disabled>
     </select>
     <br>
     <label for="debut">Marqueur de début</label>

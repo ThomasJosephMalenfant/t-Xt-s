@@ -1,6 +1,6 @@
 // TODO Transformer en un seul objet avec différentes méthodes ?
-const getTextes = async (rqt) => {
-let url = "/api/textes/" + encodeURI(rqt) ;
+const grabApi = async (rqt) => {
+let url = "/api/" + encodeURI(rqt) ;
 const reponse = await fetch(url, {
         credentials: 'same-origin',
         headers: {
@@ -56,7 +56,7 @@ function checkContent() {
 
         if (test_out > test_in) {
             let rqt = inner.substring(test_in,test_out) ;
-            getTextes(rqt)
+            grabApi("textes/" + rqt)
             .then((resultat) => remplacer(element,rqt, resultat))
                 .catch((erreur) => console.log(erreur));
         }

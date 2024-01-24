@@ -17,6 +17,7 @@ $routes->get('/', 'Home::index');
 
 $routes->resource('api/langues', ['controller' => 'Langues']) ;
 $routes->resource('api/corpus', ['controller' => 'Corpus']) ;
+$routes->resource('api/versions', ['controller' => 'Versions']) ;
 $routes->resource('api/livres', ['controller' => 'Livres']) ;
 $routes->resource('api/textes', ['controller' => 'Textes']) ;
 
